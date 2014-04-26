@@ -1,0 +1,51 @@
+extends layout
+
+block  content
+    #content-container
+        .content-section
+            .label-container
+                span.label-elem-active
+                    a(href="/data?q=post") 提交数据
+                span.label-elem
+                    a(href="/data?q=show") 显示数据
+                span.label-elem
+                    a(href="/data?q=stat") 统计数据
+            .blank-div-for-border
+            .fold-section
+                form(action="/data" method="POST",enctype="multipart/form-data")
+                    .form-elem
+                        #upload-container
+                            input#upload-text(type="text")
+                            label#upload-label 
+                                p  上传
+                                span
+                                    input#upload-file(type="file" name="upload-file")
+                    .form-elem
+                        .switch-container
+                            label.block-switch
+                                input.checkbox-switch(type="checkbox", name="upload_opt", value="2d")
+                                span.label-switch(data-on="On" data-off="Off")
+                                span.handle-switch
+                            span 开启2D图形
+                        .switch-container
+                            label.block-switch
+                                input.checkbox-switch(type="checkbox", name="upload_opt", value="3d")
+                                span.label-switch(data-on="On" data-off="Off")
+                                span.handle-switch
+                            span 开启3D图形
+                        .switch-container
+                            label.block-switch
+                                input.checkbox-switch(type="checkbox", name="upload_opt", value="alg")
+                                span.label-switch(data-on="On" data-off="Off")
+                                span.handle-switch
+                            span 开启自动算法处理
+                        .switch-container
+                            label.block-switch
+                                input.checkbox-switch(type="checkbox", name="upload_opt", value="mode")
+                                span.label-switch(data-on="On" data-off="Off")
+                                span.handle-switch
+                            span 开启模式
+                    .form-elem
+                        .submit
+                            input(type="submit" value="提交")
+    script(type="text/javascript",src="javascripts/data.js")

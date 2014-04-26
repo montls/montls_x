@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  font-size: 35px;
+  color: #000;
+  font-weight: bold;
+  line-height: 1.7;
+  margin: 14px 0;
+}
+h2 {
+  font-size: 21px;
+  color: #000;
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 14px 0;
+}
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+a {
+  color: #00b7ff;
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+}
+.navbar {
+  width: 100%;
+  padding: 11.200000000000001px 0;
+  background-color: #000;
+  color: #00b7ff;
+  font-size: 16.8px;
+  box-shadow: 0 3px 5px #999;
+}
+.nav-container {
+  width: 932px;
+  margin: 0 auto;
+  padding: 0 14px;
+}
+.navbar-elem {
+  margin-left: 42px;
+}
+.navbar-elem:first-child {
+  margin-left: 0;
+}
+.navbar-ul > li {
+  display: inline;
+  margin-left: 42px;
+  font-weight: blod;
+}
+.navbar-ul > li:first-child {
+  margin-left: 0;
+}
+#content-container {
+  width: 932px;
+  margin: 0 auto;
+  padding: 0 14px;
+  overflow: auto;
+}
+#left-content {
+  width: 139px;
+  float: left;
+  margin-top: 14px;
+  text-align: right;
+  padding-right: 28px;
+}
+#left-content-fixed {
+  width: 139px;
+  position: fixed;
+  top: 61px;
+}
+#brand-content {
+  border-bottom: 1px solid #eee;
+}
+#brand-content > h1:first-letter {
+  color: #00b7ff;
+}
+#right-content {
+  width: 735px;
+  float: left;
+  height: 1000px;
+  margin-top: 14px;
+  padding-left: 28px;
+  border-left: 1px solid #eee;
+}
+#header-content {
+  margin: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+#real-content {
+  margin: 28px 0;
+}
+.content-section {
+  margin: 28px 0;
+}
+.content-section > h2 {
+  margin: 7px;
+}
+.content-section > ul {
+  padding: 0 56px;
+  list-style-type: disc;
+}
+.photo-container {
+  padding: 0 56px;
+}
+.photo-container > img {
+  border: 1px solid #eee;
+}
+.vnav-item > a {
+  font-size: 21px;
+  color: #bbb;
+  text-decoration: underline;
+}
+.vnav-item > a:hover {
+  color: #00b7ff;
+  text-decoration: none;
+}
+.fold-section {
+  width: 100%;
+}
+.label-container {
+  font-size: 21px;
+}
+.label-elem {
+  margin-left: 28px;
+}
+.label-elem > a {
+  color: #bbb;
+  text-decoration: underline;
+}
+.label-elem:first-child {
+  margin-left: 0;
+}
+.label-elem-active > a {
+  color: #000;
+  text-decoration: none;
+}
+.label-elem > a:hover {
+  color: #777;
+}
+.blank-div-for-border {
+  height: 14px;
+  border-bottom: 1px solid #ddd;
+}
+form {
+  margin: 28px 0;
+}
+.form-elem {
+  margin: 14px 0;
+}
+.switch-container > span {
+  position: relative;
+  top: 2px;
+  left: 4px;
+}
+.block-switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  height: 20px;
+  padding: 3px;
+  background-color: #fff;
+  border-radius: 18px;
+  cursor: pointer;
+}
+.block-switch > .checkbox-switch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.label-switch {
+  position: relative;
+  display: block;
+  font-size: 10px;
+  height: inherit;
+  width: 56px;
+  text-transform: uppercase;
+  background: #eee;
+  border-radius: inherit;
+}
+.label-switch:before,
+.label-switch:after {
+  position: absolute;
+  top: 50%;
+  margin-top: -0.5em;
+  line-height: 1;
+}
+.label-switch:before {
+  content: attr(data-off);
+  right: 11px;
+  color: #aaa;
+  box-shadow: inset 0 0 2px 1px #eee;
+}
+.label-switch:after {
+  content: attr(data-on);
+  left: 11px;
+  color: #fff;
+  opacity: 0;
+}
+.block-switch > .checkbox-switch:checked ~ .label-switch {
+  background-color: #47a8d8;
+}
+.block-switch > .checkbox-switch:checked ~ .label-switch:before {
+  opacity: 0;
+}
+.block-switch > .checkbox-switch:checked ~ .label-switch:after {
+  opacity: 1;
+}
+.handle-switch {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 1px 1px #eee;
+}
+.block-switch > .checkbox-switch:checked ~ .handle-switch {
+  left: 40px;
+}
+.submit {
+  border-top: 1px dotted #eee;
+}
+.submit > input[type="submit"] {
+  font-size: 14px;
+  margin: 7px 0;
+  padding: 7px 14px;
+  box-shadow: 0 0 0 0 #fff;
+  border-radius: 0;
+  color: #fff;
+  background-color: #83b81a;
+  border: none;
+  opacity: 0.8;
+}
+.submit > input[type="submit"]:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+#upload-container {
+  overflow: auto;
+}
+#upload-file {
+  z-index: 999;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  _cursor: hand;
+  left: 0;
+  height: 28px;
+  width: 97px;
+}
+#upload-label {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background-color: #83b81a;
+  color: #fff;
+  display: block;
+  width: 97px;
+  height: 25px;
+  padding-top: 3px;
+  float: left;
+  margin-left: 7px;
+  opacity: 0.9;
+}
+#upload-label:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+#upload-label > p {
+  height: 100%;
+}
+#upload-text {
+  float: left;
+  height: 24px;
+  width: 304px;
+}

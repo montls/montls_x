@@ -1,0 +1,4 @@
+module.exports = {
+    os_split:"/",
+    extname:['json']
+}
