@@ -33,8 +33,53 @@ app.use(function(req,res,next){
             uploadDir:'./data/json',
             limit:1000000000 // 1000M
         });
+        var fileConfig_json = {};
+        var create_date = new Date();
+        console.log(create_date);
         form.on('file',function(name,files){
-            
+            //建立配置文件
+            if(files &&  files.originalFilename){
+                fileConfig_json.fieldName = files.fieldName;
+                fileConfig_json.fileName = files.originalFilename;
+                fileConfig_json.path = files.path;
+                fileConfig_json.length = files.ws.bytesWritten;
+            }else{
+                next(404);
+            }
+        });
+        form.on('field',function(name,value){
+            var tmp;
+            var stack = [];
+            if(fileConfig_json[name]){
+                tmp = fileConfig_json[name];
+                if(tmp instanceof Array){
+                    fileConfig_json[name].push(value);
+                }else{
+                    stack.push(tmp,value);
+                    fileConfig_json[name] = stack;
+                }
+            }else{
+                fileConfig_json[name] = value;
+            }
+        });
+        form.on('close',function(){
+            fileConfig_json.date = create_date;
+            var configFileName = path.join('./data/config/',path.basename(fileConfig_json.path).split('.')[0]+'.json');
+            var fileConfig_str = JSON.stringify(fileConfig_json);
+            fs.writeFile(configFileName,fileConfig_str,function(err){
+                if(err)
+                    res.seng(500);
+            });
+            var list_json = {};
+            list_json.name = fileConfig_json.fileName;
+            list_json.configPath = configFileName;
+            list_json.filePath = 'data/'+fileConfig_json.path;
+            list_json.date = create_date;
+            var list_str = JSON.stringify(list_json);
+            fs.appendFile('./data/list.json',list_str,function(err){
+                if(err)
+                    res.send(500);
+            });
         });
         form.parse(req);
         res.render('data');
