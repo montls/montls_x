@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req,res,next){
     if(req.url === '/data' && req.method === 'POST'){
         var form = new multiparty.Form({
-            uploadDir:'./data/json'.split(path.sep).join(config.os_split),
+            uploadDir:'./data/json',
             limit:1000000000 // 1000M
         });
         form.on('file',function(name,files){
