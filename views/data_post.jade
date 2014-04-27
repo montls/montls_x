@@ -4,14 +4,12 @@ block  content
     #content-container
         .content-section
             .label-container
-                span.label-elem-active
-                    a(href="/data?q=post") 提交数据
-                span.label-elem
-                    a(href="/data?q=show") 显示数据
-                span.label-elem
-                    a(href="/data?q=stat") 统计数据
+                span.label-elem.label-elem-active#post-data
+                    a(href="/data_post") 提交数据
+                span.label-elem#show-data
+                    a(href="/data_show") 数据操作
             .blank-div-for-border
-            .fold-section
+            .fold-section#ajax-fold
                 form(action="/data" method="POST",enctype="multipart/form-data")
                     .form-elem
                         #upload-container
@@ -48,4 +46,4 @@ block  content
                     .form-elem
                         .submit
                             input(type="submit" value="提交")
-    script(type="text/javascript",src="javascripts/data.js")
+    script(type="text/javascript",src="javascripts/data_post.js")

@@ -70,19 +70,19 @@ app.use(function(req,res,next){
                 if(err)
                     res.seng(500);
             });
-            var list_json = {};
-            list_json.name = fileConfig_json.fileName;
-            list_json.configPath = configFileName;
-            list_json.filePath = 'data/'+fileConfig_json.path;
-            list_json.date = create_date;
-            var list_str = JSON.stringify(list_json);
-            fs.appendFile('./data/list.json',list_str,function(err){
+            var list_str = "";
+            list_str += "name:" + fileConfig_json.fileName + ",";
+            list_str += "servername:" + fileConfig_json.path.split('/')[2].split('.')[0] + ",";
+            list_str += "configPath:" + configFileName + ",";
+            list_str += "filePath:" + 'data/'+fileConfig_json.path + ",";
+            list_str += "data" + create_date + ";";
+            fs.appendFile('./data/list.log',list_str,function(err){
                 if(err)
-                    res.send(500);
+                    res.send(500); // dry fixed
             });
         });
         form.parse(req);
-        res.render('data');
+        res.render('data_post');
         return;
     }else{
         next();

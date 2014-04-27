@@ -17,7 +17,7 @@ h2 {
   margin: 14px 0;
 }
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", Microsoft YaHei, Helvetica, Arial, sans-serif;
   line-height: 1.5;
 }
 a {
@@ -120,6 +120,7 @@ ul {
 }
 .fold-section {
   width: 100%;
+  margin: 14px 0;
 }
 .label-container {
   font-size: 21px;
@@ -279,4 +280,64 @@ form {
   float: left;
   height: 24px;
   width: 304px;
+}
+#data-show-dir-name {
+  margin: 14px 0;
+  padding-bottom: 2.8000000000000003px;
+  border-bottom: 1px dotted #ddd;
+}
+#data-show-dir-name > span > span {
+  margin: 0 7px;
+}
+#data-show-dir-name > span > a:hover {
+  color: #fff;
+  background-color: #83b81a;
+}
+#data-show-file-name {
+  margin: 14px 0;
+  overflow: auto;
+}
+#data-show-file-name > div {
+  width: 219px;
+  padding: 0 14px 0 0;
+  float: left;
+  line-height: 42px;
+}
+#data-show-file-name > div > a {
+  padding: 7px;
+}
+#data-show-file-name > div > a:hover {
+  cursor: pointer;
+  color: #83b81a;
+}
+#data-show-opt {
+  margin: 14px 0;
+  padding-top: 2.8000000000000003px;
+  border-top: 1px dotted #ddd;
+}
+#data-show-opt > span {
+  margin-left: 28px;
+  cursor: pointer;
+}
+#data-show-opt > span:first-child {
+  margin: 0;
+}
+#data-show-opt > span > a {
+  color: #ddd;
+  padding: 0 14px;
+}
+#data-show-opt > span > span {
+  position: relative;
+  color: #ddd;
+}
+#data-ajax-header {
+  margin: 14px 0;
+}
+#data-ajax-header > a {
+  margin: 0 14px;
+  cursor: pointer;
+}
+#data-ajax-header > span {
+  color: #00b7ff;
+  cursor: pointer;
 }

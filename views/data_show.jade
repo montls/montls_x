@@ -1,0 +1,37 @@
+extends layout
+
+block  content
+    #content-container
+        .content-section
+            .label-container
+                span.label-elem#post-data
+                    a(href="/data_post") 提交数据
+                span.label-elem.label-elem-active#show-data
+                    a(href="/data_show") 数据操作
+            .blank-div-for-border
+            .fold-section#ajax-fold
+                #data-show-dir-name
+                    span
+                        a(href="#") <
+                        span 数据文件夹
+                        a(href="#") >
+                #data-show-file-name
+                    div#data-show-file-1
+                    div#data-show-file-2
+                    div#data-show-file-3
+                    div#data-show-file-4
+                #data-show-opt
+                    span
+                        span [
+                        a#data-show-opt-show 显示
+                        span ]
+                    span
+                        span [
+                        a#data-show-opt-stat 统计
+                        span ]
+        .content-section#data-stat
+            #data-ajax-header
+            #data-ajax-content
+            #data-ajax-footer
+            
+    script(type="text/javascript",src="javascripts/data_show.js")

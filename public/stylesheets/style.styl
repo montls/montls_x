@@ -25,7 +25,7 @@ h1
 h2
     h-set(1.5*font-size,black,bold,1.5,font-size 0)
 body
-    font: font-size "Lucida Grande", Helvetica, Arial, sans-serif
+    font: font-size "Lucida Grande", Microsoft YaHei, Helvetica, Arial, sans-serif
     line-height:1.5
 a
     color: color_a 
@@ -119,8 +119,14 @@ ul
 .vnav-item > a:hover
     color:color_a
     text-decoration:none
+
+/////////////////////////////////////////
+// => data 
+/////////////////////////////////////////
+
 .fold-section
     width:100%
+    margin:font-size 0 
 .label-container
     font-size:1.5*font-size
 .label-elem
@@ -139,11 +145,12 @@ ul
     height:font-size
     border-bottom:1px solid color_gyd
 
-//form 
 form
     margin:2*font-size 0
 .form-elem
     margin:font-size 0
+    
+//switch checkbox
 .switch-container > span
     position:relative
     top:2px
@@ -249,10 +256,58 @@ form
     &:hover
         opacity:1
         cursor:pointer
-#upload-label > p
-    height:100%
+    & > p
+        height:100%
 #upload-text
     float:left
     height:2*font-size - 4px 
     width:304px
+#data-show-dir-name
+    margin:font-size 0
+    padding-bottom:0.2*font-size
+    border-bottom:1px dotted color_gyd
+    & > span
+        & > span 
+            margin:0 0.5*font-size
+        & > a:hover
+            color:white
+            background-color:color_g1
+                
+#data-show-file-name
+    margin:font-size 0
+    overflow:auto
+    & > div
+        width:((960px - 6*font-size) / 4)
+        padding:0 font-size 0 0
+        float:left
+        line-height:3*font-size
+        & > a
+            padding:0.5*font-size
+            &:hover
+                cursor:pointer
+                color:color_g1
 
+#data-show-opt
+    margin:font-size 0
+    padding-top:0.2*font-size
+    border-top:1px dotted color_gyd
+    & > span
+        margin-left:2*font-size
+        cursor:pointer
+        &:first-child
+            margin:0
+        & > a
+            color:color_gyd
+            padding:0 1*font-size
+        & > span
+            position:relative
+            color:color_gyd
+#data-ajax-header
+    margin:font-size 0
+    & > a
+        margin:0 font-size
+        cursor:pointer
+    & > span
+        color:color_a
+        cursor:pointer
+        
