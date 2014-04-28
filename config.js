@@ -1,4 +1,4 @@
 module.exports = {
     extname:['json'],
-    rootPath:__dirname
+    rootPath:"/Users/montls/Desktop/app_test/myapp"
 }

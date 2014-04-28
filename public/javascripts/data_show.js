@@ -47,28 +47,67 @@ $(function(){
     $("#data-show-opt-stat").click(data_show_opt_stat);
     
     var get_header = $("#data-ajax-header");
-    var get_content = $("#data-ajax-context");
+    var get_content = $("#data-ajax-content");
     var get_footer = $("#data-ajax-footer");
     
     function data_show_opt_show(event){
-        
+        get_header.empty();
+        get_header.css('border',"none");
+        get_content.empty();
         if(len_clicked == 0 || len_clicked > 4){
             return;
         }
-        get_header.empty();
+        get_header.css("border-bottom","1px dotted #ddd");
         var child_node = "<span><</span>";
+        var data_file_query = "";
         for(each in a_clicked){
-            if(a_clicked[each])
-                child_node += "<a>" + a_clicked[each] + "</a>";
+            if(a_clicked[each]){
+                data_file_query = "ajax_data_show_file?file_id=" + each;
+                child_node += "<a class='click-for-ajax-file' href='#' data="+ data_file_query +">" + a_clicked[each] + "</a>";
+            }
         }
         child_node += "<span>></span>";
         get_header.append(child_node);
+        
+        var query_ajax = $("#data-ajax-header > a:nth-child(2)").attr("data");
+        child_node = "<table class='data-table'>"
+        get_content.empty();
+        $.get(query_ajax,function(data){
+            for(each in data){
+                child_node += "<tr class='data-tr'>"
+                for(i in data[each]){
+                    child_node +="<td class='data-td'>" + data[each][i] + "</td>";
+                }
+                child_node += "</tr>";
+            }
+            child_node += "</table>";
+            get_content.append(child_node);
+        });
+        $('.click-for-ajax-file').click(function(event){
+            event.preventDefault();
+            var query_ajax = $(this).attr("data");
+            var child_node = "<table class='data-table'>"
+            get_content.empty();
+            $.get(query_ajax,function(data){
+                for(each in data){
+                    child_node += "<tr class='data-tr'>"
+                    for(i in data[each]){
+                        child_node +="<td class='data-td'>" + data[each][i] + "</td>";
+                    }
+                    child_node += "</tr>";
+                }
+                child_node += "</table>";
+                get_content.append(child_node);
+            });
+        });
     }
     
     function data_show_opt_stat(event){
+        get_header.empty();
+        get_header.css('border',"none");
+        get_content.empty();
         if(len_clicked == 0 && len_clicked > 4){
             event.preventDefault()
         }
-        get_header.empty();
     }
 });

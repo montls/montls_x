@@ -338,6 +338,8 @@ form {
   cursor: pointer;
 }
 #data-ajax-header > span {
-  color: #00b7ff;
-  cursor: pointer;
+  color: #ddd;
+}
+.data-td {
+  padding: 0 14px;
 }

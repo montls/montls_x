@@ -74,7 +74,7 @@ app.use(function(req,res,next){
             list_str += "name:" + fileConfig_json.fileName + ",";
             list_str += "servername:" + fileConfig_json.path.split('/')[2].split('.')[0] + ",";
             list_str += "configPath:" + configFileName + ",";
-            list_str += "filePath:" + 'data/'+fileConfig_json.path + ",";
+            list_str += "filePath:" + fileConfig_json.path + ",";
             list_str += "data" + create_date + ";";
             fs.appendFile('./data/list.log',list_str,function(err){
                 if(err)
