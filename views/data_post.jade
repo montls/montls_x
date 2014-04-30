@@ -10,7 +10,7 @@ block  content
                     a(href="/data_show") 数据操作
             .blank-div-for-border
             .fold-section#ajax-fold
-                form(action="/data" method="POST",enctype="multipart/form-data")
+                form(action="/data_post" method="POST",enctype="multipart/form-data")
                     .form-elem
                         #upload-container
                             input#upload-text(type="text")
@@ -21,29 +21,31 @@ block  content
                     .form-elem
                         .switch-container
                             label.block-switch
-                                input.checkbox-switch(type="checkbox", name="upload_opt", value="2d")
+                                input.checkbox-switch(type="checkbox", name="upload_opt", value="2D")
                                 span.label-switch(data-on="On" data-off="Off")
                                 span.handle-switch
                             span 开启2D图形
                         .switch-container
                             label.block-switch
-                                input.checkbox-switch(type="checkbox", name="upload_opt", value="3d")
+                                input.checkbox-switch(type="checkbox", name="upload_opt", value="3D")
                                 span.label-switch(data-on="On" data-off="Off")
                                 span.handle-switch
                             span 开启3D图形
                         .switch-container
                             label.block-switch
-                                input.checkbox-switch(type="checkbox", name="upload_opt", value="alg")
+                                input.checkbox-switch(type="checkbox", name="upload_opt", value="ALG")
                                 span.label-switch(data-on="On" data-off="Off")
                                 span.handle-switch
                             span 开启自动算法处理
                         .switch-container
                             label.block-switch
-                                input.checkbox-switch(type="checkbox", name="upload_opt", value="mode")
+                                input.checkbox-switch(type="checkbox", name="upload_opt", value="MODE")
                                 span.label-switch(data-on="On" data-off="Off")
                                 span.handle-switch
                             span 开启模式
                     .form-elem
                         .submit
                             input(type="submit" value="提交")
+                    .form-elem
+                        #error-container= err_info
     script(type="text/javascript",src="javascripts/data_post.js")

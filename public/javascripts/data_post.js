@@ -5,4 +5,7 @@ $(function(){
     $("#show-data").click(function(){
         $("#ajax-fold").css("opacity",0);
     });
+    if($("#error-container").text()){
+        $("#error-container").css("background-color","#00b7ff");
+    }
 });
