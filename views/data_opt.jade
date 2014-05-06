@@ -3,12 +3,6 @@ extends layout
 block  content
     #content-container
         .content-section
-            .label-container
-                span.label-elem#post-data
-                    a(href="/data_post") 提交数据
-                span.label-elem.label-elem-active#show-data
-                    a(href="/data_show") 数据操作
-            .blank-div-for-border
             .fold-section#ajax-fold
                 #data-show-dir-name
                     span
@@ -29,10 +23,19 @@ block  content
                         span [
                         a#data-show-opt-stat 统计
                         span ]
+                    span
+                        span [
+                        a#data-show-opt-del 删除
+                        span ]
+                    span
+                        span [
+                        a#data-show-opt-3d 3D显示
+                        span ]
         #error-container
         .content-section#data-stat
             #data-ajax-header
             #data-ajax-content
             #data-ajax-footer
-            
-    script(type="text/javascript",src="javascripts/data_show.js")
+    link(rel='stylesheet', href='/stylesheets/data_opt.css')
+    script(type="text/javascript",src="javascripts/data_opt.js")
+    script(type="text/javascript",src="javascripts/3d/data_filter.js")

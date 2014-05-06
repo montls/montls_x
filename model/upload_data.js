@@ -4,7 +4,7 @@ var path = require('path');
 var config = require('../config');
 
 module.exports = function(req,res,next){
-    if(req.url === '/data_post' && req.method === 'POST'){
+    if(req.url === '/data_upload' && req.method === 'POST'){
         var form = new multiparty.Form({
             uploadDir:'./data/json',
             limit:config.eachFileLimit
@@ -51,7 +51,7 @@ module.exports = function(req,res,next){
             //如果没有文件上传
             if(fileConfig_json.fileName === undefined){
                 // 将 “文件为空的错误提示” 在上传页显示
-                res.render('data_post',{ title:'Data Post',
+                res.render('data_upload',{ title:'Data Upload',
                              err_info:'上传文件不能为空'
                             });
                 fs.unlink(config.rootPath + _file.path)
@@ -61,7 +61,7 @@ module.exports = function(req,res,next){
             var file_type = path.basename(fileConfig_json.path).split('.')[1]
             if(file_type != 'json'){
                 fs.unlink(config.rootPath + fileConfig_json.path);
-                res.render('data_post',{ title:'Data Post',
+                res.render('data_upload',{ title:'Data Upload',
                              err_info:'请上传规定格式的JSON文件'
                             });
                 return;
@@ -84,11 +84,11 @@ module.exports = function(req,res,next){
             list_str += "storageName:" + fileConfig_json.path.split('/')[2].split('.')[0] + ",";
             list_str += "configPath:" + configFileName + ",";
             list_str += "filePath:" + fileConfig_json.path + ",";
-            list_str += "date" + new Date() + ";";
+            list_str += "date:" + new Date() + ";";
             fs.appendFile('./data/list.log',list_str,function(err){
                 if(err)   console.log('./data/list.log 无法正确打开，请检查配置路径');
             });
-            res.render('data_post',{ title:'Data Post',
+            res.render('data_upload',{ title:'Data Upload',
                                  err_info:''
                                 });
             return;

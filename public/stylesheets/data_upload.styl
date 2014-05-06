@@ -1,0 +1,43 @@
+font-size = 14px
+color_a = #00B7FF
+color_gye = #eee
+color_gyd = #ddd
+color_gyc = #ccc
+color_gyc = #bbb
+color_gya = #aaa
+color_g1 = #83b81a
+
+//upload file
+#upload-container
+    overflow:auto
+#upload-file
+    z-index: 999
+    position:absolute
+    opacity:0
+    cursor:pointer
+    _cursor:hand
+    left:0
+    height:2*font-size
+    width:97px
+#upload-label
+    position:relative
+    overflow:hidden
+    text-align:center
+    background-color:color_g1
+    color:#fff
+    display:block
+    width:97px
+    height:2*font-size - 3px //修正字体无法居中问题
+    padding-top:3px
+    float:left;
+    margin-left:0.5*font-size
+    opacity:0.9
+    &:hover
+        opacity:1
+        cursor:pointer
+    & > p
+        height:100%
+#upload-text
+    float:left
+    height:2*font-size - 4px 
+    width:304px

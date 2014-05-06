@@ -1,12 +1,13 @@
-var config = require('../config');
 var fs = require('fs');
+var config = require('../config');
 
 module.exports = function(req,res){
-    var id = req.query.file_id;
+    var id = req.query.id;
     var list_path = config.logList_path;
     var each_list;
-    var file_path;
-    console.log(id);
+    var files = "";
+    var file_path = "";
+    var config_path = "";
     fs.stat(list_path,function(err,stats){
         if(err) console.log("'~/data/list.log' 您的数据索引目录已丢失或者全部数据文件已丢失");
             
@@ -19,24 +20,37 @@ module.exports = function(req,res){
                 //遍历 list.log 匹配文件信息 
                 for(each in data_list){
                     each_list = data_list[each].split(',');
-                    if(each_list !='' && id == each_list[1].split(':')[1]){
+                    if(each_list != '' && id == each_list[1].split(':')[1]){
                         file_path = config.rootPath + each_list[3].split(':')[1];
-                        break;
+                        config_path = config.rootPath + each_list[2].split(':')[1];
+                    }else{
+                        files += data_list[each] += ';';
                     }
                 }
-                //判断 "~/data/json/*.json" 是否存在
-                console.log(file_path);
+                console.log(files);
+                fs.writeFile(list_path,files,function(err){
+                    if(err) console.log(err);
+                });
+                //判断 "~/data/config/*.json" 是否存在
+                fs.stat(config_path,function(err,stats){
+                    if(err){
+                        res.send(':Error');
+                    }
+                    if(stats.isFile()){
+                        fs.unlink(config_path,function (err){
+                            if(err) console.log(err);
+                        });
+                    }else{
+                        res.send(':Error');
+                    }
+                });
                 fs.stat(file_path,function(err,stats){
                     if(err){
                         res.send(':Error');
                     }
                     if(stats.isFile()){
-                        fs.readFile(file_path,encoding="utf8",function(err,data){
-                            if(err){
-                                console.log(err);
-                                res.send(err);
-                            }
-                            res.send(data_to_json(data));
+                        fs.unlink(file_path,function (err){
+                            if(err) console.log(err);
                         });
                     }else{
                         res.send(':Error');
@@ -47,14 +61,4 @@ module.exports = function(req,res){
             console.log("'~/data/list.log' 不是一个文件");
         }
     });
-}
-
-function data_to_json(data){
-    var data_json = [];
-    var line = [];
-    var data_list_row = data.split(config.split_row); 
-    for(each in data_list_row){
-        data_json.push(data_list_row[each].split(config.split_col));
-    }
-    return data_json;
 }

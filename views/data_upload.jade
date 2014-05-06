@@ -1,0 +1,18 @@
+extends layout
+
+block  content
+    #content-container
+        .content-section
+            .fold-section#ajax-fold
+                form(action="/data_upload" method="POST",enctype="multipart/form-data")
+                    .form-elem
+                        #upload-container
+                            input#upload-text(type="text")
+                            label#upload-label 
+                                p  上传
+                                span
+                                    input#upload-file(type="file" name="upload-file")
+                    .form-elem
+                        #error-container= err_info
+    link(rel='stylesheet', href='/stylesheets/data_upload.css')
+    script(type="text/javascript",src="javascripts/data_upload.js")

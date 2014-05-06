@@ -18,7 +18,7 @@ module.exports = function(req,res){
                 //遍历 list.log 匹配文件信息 
                 for(each in data_list){
                     each_list = data_list[each].split(',');
-                    if(id == each_list[1].split(':')[1]){
+                    if(each_list !='' && id == each_list[1].split(':')[1]){
                         file_path = config.rootPath + each_list[2].split(':')[1];
                         break;
                     }
