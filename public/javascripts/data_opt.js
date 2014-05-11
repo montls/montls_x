@@ -28,16 +28,12 @@ $(function(){
         $.get('ajax_data_show_dir',function(json,status){
             var i = 0;
             //解析服务端传回的json文件 遍历生成列表
-            JSON.parse(json).forEach(function(each_str){
-                if(each_str){
-                    var each_div;
-                    var each_selector = "#data-show-file-" + (i%4+1);
-                    var each_name = each_str.split(',')[0].split(':')[1];
-                    var each_id = each_str.split(',')[1].split(':')[1];
-                    i++;
-                    each_str = "<a class='data-show-file-a' " + "data=" + each_id + " >" + each_name + "</a><br>";
-                    $(each_selector).append(each_str);
-                }
+            JSON.parse(json).forEach(function(each_obj){
+                var each_selector = "#data-show-file-" + (i%4+1);
+                i++;
+                var each_id = each_obj.path.split('/')[2].split('.')[0];
+                var each_link = $('<a class ='+'data-show-file-a data='+each_id+' >'+each_obj.fileName+'</a>');
+                $(each_selector).append(each_link, $('<br/>') );
             });
             //定义选中文件事件
             function link_on(){
