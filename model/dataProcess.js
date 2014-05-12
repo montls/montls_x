@@ -1,8 +1,8 @@
 var mg_ins1 = require("./wrapMg").mg_ins1;
 var Schema = require("mongoose").Schema;
 
-var DataProcess = function(p_fileMate, p_JSON){
-    this.fileMate = p_fileMate;
+var DataProcess = function(p_fileMeta, p_JSON){
+    this.fileMeta = p_fileMeta;
     this.JSON = p_JSON;
 };
 
@@ -40,43 +40,26 @@ DataProcess.prototype.parseData = function(callback){
             callback(new Error("data Error"));
         
         //生成基本信息
-        data_schema_pattern.data = [{type:Number,default:0}];
-        data_schema_opts.collection = "data_"+Date.now();
-        meta_schema_pattern = {
-            embedLegth: Number,
-            isEmbedLabel: Boolean,
-            elemType: String,
-            label:[{type:String,defalut:"Undefined"}],
-            fileMate:{
-                fileName: String,
-                filePath: String,
-                fileId:   String,
-                fileType: String
-            },
-            data:{
-                number:         Number,
-                collectionName: String,
-                ids:            [{type:Schema.Types.ObjectId, ref:'data_model'}]
-            },
-            date: {type:Date,default:Date.now()}
-        }
-        meta_schema_opts.collection = "meta_"+Date.now();
-        data_schema = mg_ins1.generateSchema(data_schema_pattern,data_schema_opts);
+        var _date = Date.now();
+        data_schema_opts.collection = "data_"+_date;
+        meta_schema_opts.collection = "meta_"+_date;
+        data_schema = mg_ins1.generateSchema(mg_ins1._data_schema,data_schema_opts);
         data_model = mg_ins1.generateModel(data_schema_opts.collection,data_schema);
-        meta_schema = mg_ins1.generateSchema(meta_schema_pattern,meta_schema_opts);
+        meta_schema = mg_ins1.generateSchema(mg_ins1._meta_schema,meta_schema_opts);
         meta_model = mg_ins1.generateModel(meta_schema_opts.collection,meta_schema);
         
+        var _data_len = this._data.length;
         //保存数据配置文件
         var meta_doc = new meta_model({
             embedLegth:     this._tr,
             isEmbedLabel:   this._eflag,
             elemType:       this.tp,
             label:          this._label,
-            fileMate:{
-                fileName:   this.fileMate.fileName,
-                filePath:   this.fileMate.filePath,
-                fileId:     this.fileMate.fileId,
-                fileType:   this.fileMate.fileType
+            fileMeta:{
+                fileName:   this.fileMeta.fileName,
+                filePath:   this.fileMeta.filePath,
+                fileId:     this.fileMeta.fileId,
+                fileType:   this.fileMeta.fileType
             },
             data:{
                 number:         _data_len,
@@ -88,19 +71,21 @@ DataProcess.prototype.parseData = function(callback){
         });
         
         //传入数据，并更新meta链接
-        var _data_len = this._data.length;
         for(var i=0;i<_data_len;i++){
             if(!(this._data[i] instanceof Array))
-               callback(new Error("data Error"));
+                callback(new Error("data Error"));
             data_model.create({data:this._data[i]},function(err,doc){
                 if(err) callback(err);
-                meta_doc.data.ids.push(doc._id);
-                meta_doc.save();
             });
         }
         
         //记录当前存在的配置文件
-        var _l_doc = mg_ins1.list_model({metaList:meta_schema_opts.collection});
+        var _l_doc = mg_ins1.list_model({
+            metaName:meta_schema_opts.collection,
+            fileName: this.fileMeta.fileName,
+            filePath: this.fileMeta.filePath,
+            fileId:   this.fileMeta.fileId
+        });
         _l_doc.save(function(err,list){
             callback(err);
         });

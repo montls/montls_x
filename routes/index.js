@@ -6,7 +6,7 @@ var upload_data = require('../model/upload_data');
 var m_show_dir = require('../model/show_dir');
 var m_show_file = require('../model/show_file');
 var m_show_stat = require('../model/show_stat');
-//var m_show_del = require('../model/show_del');
+var m_show_del = require('../model/show_del');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -43,23 +43,31 @@ router.post('/data_upload',function(req,res){
     });
 });
 
-m_show_dir(null,null,null);
-////ajax
-//router.get('/ajax_data_show_dir',function(req,res){
-//    m_show_dir(req,res,function(err,dir_list){
-//        if(err) console.log(err);
-//        res.send(dir_list);
-//    });
-//});
-//router.get('/ajax_data_show_file',function(req,res){
-//    m_show_file(req,res);
-//});
-//router.get('/ajax_data_show_stat',function(req,res){
-//    m_show_stat(req,res);
-//});
-//router.get('/ajax_data_show_del',function(req,res){
-//    m_show_del(req,res);
-//});
+//ajax
+router.get('/ajax_data_show_dir',function(req,res){
+    m_show_dir(req,res,function(err,dir_json){
+        if(err) console.log(err);
+        res.send(dir_json);
+    });
+});
+router.get('/ajax_data_show_file',function(req,res){
+    m_show_file(req,res,function(err,data){
+        if(err) console.log(err);
+        res.send(data);
+    });
+});
+router.get('/ajax_data_show_stat',function(req,res){
+    m_show_stat(req,res,function(err,data){
+        if(err) console.log(err);
+        res.send(data);
+    });
+});
+router.get('/ajax_data_show_del',function(req,res){
+    m_show_del(req,res,function(err,data){
+        if(err) console.log(err);
+        res.send("Successed");
+    });
+});
 //router.get('/ajax_data_show_3d',function(req,res){
 //    m_show_file(req,res);
 //});
