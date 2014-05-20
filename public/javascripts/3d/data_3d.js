@@ -2,11 +2,11 @@ $(function(){
     $("#data-show-opt-3d").click(function(event){
         var child_node;
         clear_content();
-        
+        event.preventDefault();
         function gen_switch(value,text){
             return $('<div />', {'class': 'switch-container'}).append(
                         $('<label />',{'class': 'block-switch'}).append(
-                            $('<input />',{type:'checkbox', name:'upload_opt', value:value,'class':'checkbox-switch'}),
+                            $('<input />',{type:'checkbox', name:'opt', value:value,'class':'checkbox-switch'}),
                             $('<span />',{'data-on':'On','data-off':'off','class':'label-switch'}),
                             $('<span />',{'class':'handle-switch'})
                         ),
@@ -16,18 +16,12 @@ $(function(){
         get_content.append(
             $('<form />', { action: '/3d', method: 'POST' }).append(
                $('<div />', {'class': 'form-elem'}).append(
-                   gen_switch('2D','开启2D图形'),
-                   gen_switch('animal','开启动画效果'),
-                   gen_switch('control','开启视角控制'),
-                   gen_switch('light','使用灯光'),
+                   gen_switch('EX1','开启EX-1'),
                    $('<div />',{'class':"submit"}).append(
                         $('<input />',{type:'submit',value:"提交至3D显示"})
                    )
                )
             )
         )
-        
-        $.get("ajax_data_show_3d?file_id="+del_id,function(data){
-        });
     });
 });

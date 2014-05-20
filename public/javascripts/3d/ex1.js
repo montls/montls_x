@@ -1,4 +1,5 @@
 $(function(){
+    console.log(x);
     Ex1();
 });
 function Ex1(){
@@ -128,4 +129,8 @@ function initStats(){
     stats.domElement.style.top = '0px';
     $("#Stats-output").append(stats.domElement);
     return stats;
+}
+
+function getData(){
+    
 }

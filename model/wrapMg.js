@@ -3,11 +3,9 @@ var path = require("path");
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema; 
 
-var WarpMongo = function(){
+var WrapMongo = function(){
     this.list_model;
     this._meta_schema = {
-        embedLegth: Number,
-        isEmbedLabel: Boolean,
         elemType: String,
         label:[{type:String,defalut:"Undefined"}],
         fileMeta:{
@@ -23,11 +21,11 @@ var WarpMongo = function(){
         date: {type:Date,default:Date.now()}
     };
     this._data_schema = {
-        "data":[{type:Number,default:0}]
+        "data":[{type:String,default:0}]
     };
 };
 
-WarpMongo.prototype.connectToDb = function(p_dbName,callback){
+WrapMongo.prototype.connectToDb = function(p_dbName,callback){
     var dbName = p_dbName || "db0";
     if(typeof dbName != "string" )
         callback(new Error("DBName if wrong"));
@@ -38,7 +36,8 @@ WarpMongo.prototype.connectToDb = function(p_dbName,callback){
         callback(null);
     });
 }
-WarpMongo.prototype.generateSchema = function(p_pattern,p_opts){
+
+WrapMongo.prototype.generateSchema = function(p_pattern,p_opts){
     if(typeof p_pattern != 'object')
         return new Error("Pattern is wrong");
     var opts = p_opts || {};
@@ -48,7 +47,7 @@ WarpMongo.prototype.generateSchema = function(p_pattern,p_opts){
     return _schema;
 }
 
-WarpMongo.prototype.generateModel = function(p_modelName,p_schema){
+WrapMongo.prototype.generateModel = function(p_modelName,p_schema){
     if(typeof p_modelName != "string")
         return new Error("Model name is wrong");
     if(!(p_schema instanceof  Schema))
@@ -57,7 +56,7 @@ WarpMongo.prototype.generateModel = function(p_modelName,p_schema){
     return _model;
 }
 
-WarpMongo.prototype.generateList = function(){
+WrapMongo.prototype.generateList = function(){
     var list_schema = mg_ins1.generateSchema({
         metaName:   String,
         fileName:   String,
@@ -68,7 +67,7 @@ WarpMongo.prototype.generateList = function(){
     this.list_model = list_model;
 }
 
-WarpMongo.prototype.getDirList = function(p_query,callback){
+WrapMongo.prototype.getDirList = function(p_query,callback){
     this.list_model.find(p_query,function(err,results){
         var dir_list = [];
         results.forEach(function(elem){
@@ -78,19 +77,20 @@ WarpMongo.prototype.getDirList = function(p_query,callback){
     });
 }
 
-WarpMongo.prototype.findCollection = function(p_collName,p_query,callback){
+WrapMongo.prototype.findCollection = function(p_collName,p_query,callback){
     mongoose.connection.db.collection(p_collName,function(err,collection){
         collection.find(p_query).toArray(callback);
     });
 }
 
-WarpMongo.prototype.findCollectionAndRemove = function(p_collName,callback){
+WrapMongo.prototype.findCollectionAndRemove = function(p_collName,callback){
     mongoose.connection.db.dropCollection(p_collName,function(err){
         if(err) callback(err)
         callback(null);
     });
 }
-WarpMongo.prototype.findMetaByFileId = function(p_fileId,callback){
+
+WrapMongo.prototype.findMetaByFileId = function(p_fileId,callback){
     var that = this;
     this.findCollection('list',{fileId:p_fileId},function(err,doc0){
         if(err) callback(err);
@@ -102,14 +102,14 @@ WarpMongo.prototype.findMetaByFileId = function(p_fileId,callback){
     });
 }
 
-WarpMongo.prototype.findDataByMeta = function(p_dataName,callback){
+WrapMongo.prototype.findDataByMeta = function(p_dataName,callback){
     this.findCollection(p_dataName,{},function(err,results){
         if(err) callback(err);
         callback(null,results);
     });
 }
 
-WarpMongo.prototype.removeMetaAndDataById = function(p_fileId,callback){
+WrapMongo.prototype.removeMetaAndDataById = function(p_fileId,callback){
     var that = this;
     this.findCollection('list',{fileId:p_fileId},function(err,doc0){
         if(err) callback(err);
@@ -128,7 +128,7 @@ WarpMongo.prototype.removeMetaAndDataById = function(p_fileId,callback){
     });
 }
 
-var mg_ins1 =new WarpMongo();
+var mg_ins1 =new WrapMongo();
 //BUG:无法保证链接成功
 mg_ins1.connectToDb("db0",function(){});
 mg_ins1.generateList();

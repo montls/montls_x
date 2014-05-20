@@ -24,8 +24,8 @@ router.get('/data_upload',function(req,res){
 router.get('/data_opt',function(req,res){
     res.render('data_opt',{ title:'Data Show'});
 });
-router.get('/about',function(req,res){
-    res.render('about');
+router.get('/test',function(req,res){
+    res.render('test',{title: "Test"});
 });
 
 router.post('/data_upload',function(req,res){
@@ -41,6 +41,11 @@ router.post('/data_upload',function(req,res){
         else
             res.render('data_upload',{ title:'Data Upload',err_info:info});
     });
+});
+
+router.post('/3d',function(req,res){
+    if(req.param("opt") == 'EX1')
+        res.render('3d',{ex_script:"ex1.js"});
 });
 
 //ajax
@@ -68,8 +73,5 @@ router.get('/ajax_data_show_del',function(req,res){
         res.send("Successed");
     });
 });
-//router.get('/ajax_data_show_3d',function(req,res){
-//    m_show_file(req,res);
-//});
 
 module.exports = router;

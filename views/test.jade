@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    #map-container
+    #map-3d-container
+    script(src="http://d3js.org/d3.v3.min.js")
+    script(src="http://d3js.org/topojson.v1.min.js")
+    script(src="javascripts/test/threejs.js")
+    script(src="javascripts/test/ex1.js")
+    style
+        |.city{
+        |   stroke:#666;
+        |   stroke-dasharray:1,0;
+        |   stroke-width:0.1;
+        |   stroke-linejoin:round; }
+    

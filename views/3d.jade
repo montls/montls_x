@@ -3,9 +3,13 @@ extends layout
 block content
     #stats-output
     #canvas
+    scripy(id="data")
+        =data
     script(type="text/javascript",src="javascripts/3d/three.js")
     script(type="text/javascript",src="javascripts/3d/stats.js")
     script(type="text/javascript",src="javascripts/3d/dat.gui.js")
     script(type="text/javascript",src="javascripts/3d/data_filter.js")
-    script(type="text/javascript",src="javascripts/3d/ex1.js")
+    script(type="text/javascript",src="javascripts/3d/"+ex_script)
+        
+    
     

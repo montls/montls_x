@@ -9,6 +9,7 @@ module.exports = function(req,res,callback){
         mg_ins1.findDataByMeta(docs[0].data.collectionName,function(err,results){
             if(err) callback(err);
             var data_list = {};
+            data_list["序号"] = docs[0].label;
             for(var i in results){
                 data_list[i] = results[i].data;
             }

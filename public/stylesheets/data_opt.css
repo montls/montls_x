@@ -59,6 +59,9 @@
 .data-td {
   padding: 0 14px;
 }
+.switch-container {
+  margin: 14px 0;
+}
 .switch-container > span {
   position: relative;
   top: 2px;
@@ -146,12 +149,15 @@
   cursor: pointer;
   opacity: 1;
 }
+#stat-table {
+  color: #777;
+}
 #stat-table .stat-td-label {
-  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
   padding: 7px 14px 7px 0;
   color: #00b7ff;
 }
 #stat-table .stat-td-content {
-  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
   padding: 7px 0 7px 14px;
 }

@@ -84,6 +84,20 @@ $(function(){
         }
         data = JSON.parse(data);
         $.map(data,function parse_obj(value,i){
+            if(i == "序号"){
+                if($.isArray(value)){
+                    child_node += "<tr class='data-tr'>"
+                    child_node +="<td class='data-td'>" + i + "</td>";
+                    $.map(value,function(value,i){
+                        child_node += "<td class='data-td'>" + value + "</td>";
+                    });
+                }else{
+                    $.map(value,parse_obj);
+                }
+                delete data[i];
+            }
+        });
+        $.map(data,function parse_obj(value,i){
             if($.isArray(value)){
                 child_node += "<tr class='data-tr'>"
                 child_node +="<td class='data-td'>" + i + "</td>";
@@ -127,12 +141,10 @@ $(function(){
                 c_tr("关联数据组号",data.data.collectionName),
                 c_tr("关联数据大小",data.data.number),
                 c_tr("数据建立时间",data.date),
-                c_tr("文件嵌套深度",data.embedLegth),
                 c_tr("文件ID",data.fileMeta.fileId),
                 c_tr("文件路径",data.fileMeta.filePath),
                 c_tr("文件数据类型",data.fileMeta.fileType),
-                c_tr("标签数量",data.label.length),
-                c_tr("标签",data.label.toString())
+                c_tr("标签数量",data.label.length)
             )
         );
         function c_tr(key,value){
